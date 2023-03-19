@@ -1,4 +1,19 @@
 
+#' S3 Generic - Validate Format of S3 Object Instances
+#'
+#' @param obj S3 Object
+#' @param ... R ellipsis
+#' @param bool TRUE/FALSE
+#'
+#' @return S3 Object
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' test <- validate(s3_obj, FALSE)
+#' }
+validate <- function(obj, ..., bool) {UseMethod("validate", obj)}
+
 #' S3 Generic - CRUD 'Read' Operation
 #'
 #' @param obj S3 Object

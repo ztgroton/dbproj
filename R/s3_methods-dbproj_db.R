@@ -10,7 +10,20 @@
 #' \dontrun{
 #' result <- contents(obj, ...)
 #' }
-contents.db_schema <- function(obj, ...) {}
+contents.dbproj_db <- function(obj, ...) {}
+
+#' S3 Method - CRUD 'Insert' Operation
+#'
+#' @param obj S3 Object
+#' @param ... R ellipsis
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' insert(obj, ...)
+#' }
+insert.dbproj_db <- function(obj, ...) {}
 
 #' S3 Method - CRUD 'Update' Operation
 #'
@@ -23,7 +36,7 @@ contents.db_schema <- function(obj, ...) {}
 #' \dontrun{
 #' update(obj, ...)
 #' }
-update.db_schema <- function(obj, ...) {}
+update.dbproj_db <- function(obj, ...) {}
 
 #' S3 Method - CRUD 'Delete' Operation
 #'
@@ -36,4 +49,4 @@ update.db_schema <- function(obj, ...) {}
 #' \dontrun{
 #' delete(obj, ...)
 #' }
-delete.db_schema <- function(obj, ...) {}
+delete.dbproj_db <- function(obj, ...) {}

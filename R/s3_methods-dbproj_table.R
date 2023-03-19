@@ -1,5 +1,5 @@
 
-#' S3 Method - CRUD 'Read (Get)' Operation
+#' S3 Method - CRUD 'Read' Operation
 #'
 #' @param obj S3 Object
 #' @param ... R ellipsis
@@ -8,9 +8,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' result <- get(obj, ...)
+#' result <- contents(obj, ...)
 #' }
-get.db_database <- function(obj, ...) {}
+contents.dbproj_table <- function(obj, ...) {}
 
 #' S3 Method - CRUD 'Insert' Operation
 #'
@@ -23,7 +23,7 @@ get.db_database <- function(obj, ...) {}
 #' \dontrun{
 #' insert(obj, ...)
 #' }
-insert.db_database <- function(obj, ...) {}
+insert.dbproj_table <- function(obj, ...) {}
 
 #' S3 Method - CRUD 'Update' Operation
 #'
@@ -36,7 +36,7 @@ insert.db_database <- function(obj, ...) {}
 #' \dontrun{
 #' update(obj, ...)
 #' }
-update.db_database <- function(obj, ...) {}
+update.dbproj_table <- function(obj, ...) {}
 
 #' S3 Method - CRUD 'Delete' Operation
 #'
@@ -49,4 +49,4 @@ update.db_database <- function(obj, ...) {}
 #' \dontrun{
 #' delete(obj, ...)
 #' }
-delete.db_database <- function(obj, ...) {}
+delete.dbproj_table <- function(obj, ...) {}
