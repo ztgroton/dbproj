@@ -4,14 +4,12 @@
 \alias{validate}
 \title{S3 Generic - Validate Format of S3 Object Instances}
 \usage{
-validate(obj, ..., bool)
+validate(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
 \item{...}{R ellipsis}
-
-\item{bool}{TRUE/FALSE}
 }
 \value{
 S3 Object
@@ -21,6 +19,6 @@ S3 Generic - Validate Format of S3 Object Instances
 }
 \examples{
 \dontrun{
-test <- validate(s3_obj, FALSE)
+test <- validate(s3_obj)
 }
 }

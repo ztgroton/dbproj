@@ -3,16 +3,15 @@
 #'
 #' @param obj S3 Object
 #' @param ... R ellipsis
-#' @param bool TRUE/FALSE
 #'
 #' @return S3 Object
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' test <- validate(s3_obj, FALSE)
+#' test <- validate(s3_obj)
 #' }
-validate <- function(obj, ..., bool) {UseMethod("validate", obj)}
+validate <- function(obj, ...) {UseMethod("validate", obj)}
 
 #' S3 Generic - Test Equality of S3 Object Instances
 #'

@@ -4,14 +4,12 @@
 \alias{validate.integer}
 \title{S3 Validator for Class 'integer'}
 \usage{
-\method{validate}{integer}(obj, ..., bool = FALSE)
+\method{validate}{integer}(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
 \item{...}{R ellipsis}
-
-\item{bool}{TRUE/FALSE}
 }
 \value{
 S3 Object
@@ -21,6 +19,6 @@ S3 Validator for Class 'integer'
 }
 \examples{
 \dontrun{
-test <- validate.integer(s3_obj, bool = TRUE)
+test <- validate.integer(s3_obj)
 }
 }

@@ -4,14 +4,12 @@
 \alias{validate.list}
 \title{S3 Validator for Class 'list'}
 \usage{
-\method{validate}{list}(obj, ..., bool = FALSE)
+\method{validate}{list}(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
 \item{...}{R ellipsis}
-
-\item{bool}{TRUE/FALSE}
 }
 \value{
 S3 Object

@@ -4,14 +4,12 @@
 \alias{validate.character}
 \title{S3 Validator for Class 'character'}
 \usage{
-\method{validate}{character}(obj, ..., bool = FALSE)
+\method{validate}{character}(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
 \item{...}{R ellipsis}
-
-\item{bool}{TRUE/FALSE}
 }
 \value{
 S3 Object
@@ -21,6 +19,6 @@ S3 Validator for Class 'character'
 }
 \examples{
 \dontrun{
-test <- validate.character(s3_obj, bool = TRUE)
+test <- validate.character(s3_obj)
 }
 }

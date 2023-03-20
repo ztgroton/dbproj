@@ -4,14 +4,12 @@
 \alias{validate.numeric}
 \title{S3 Validator for Class 'numeric'}
 \usage{
-\method{validate}{numeric}(obj, ..., bool = FALSE)
+\method{validate}{numeric}(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
 \item{...}{R ellipsis}
-
-\item{bool}{TRUE/FALSE}
 }
 \value{
 S3 Object
@@ -21,6 +19,6 @@ S3 Validator for Class 'numeric'
 }
 \examples{
 \dontrun{
-test <- validate.numeric(s3_obj, bool = TRUE)
+test <- validate.numeric(s3_obj)
 }
 }

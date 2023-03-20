@@ -4,14 +4,12 @@
 \alias{validate.logical}
 \title{S3 Validator for Class 'logical'}
 \usage{
-\method{validate}{logical}(obj, ..., bool = FALSE)
+\method{validate}{logical}(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
 \item{...}{R ellipsis}
-
-\item{bool}{TRUE/FALSE}
 }
 \value{
 S3 Object
