@@ -14,6 +14,19 @@
 #' }
 validate <- function(obj, ..., bool) {UseMethod("validate", obj)}
 
+#' S3 Generic - Test Equality of S3 Object Instances
+#'
+#' @param obj S3 Object
+#' @param ... R ellipsis
+#'
+#' @return S3 Object
+#'
+#' @examples
+#' \dontrun{
+#' test <- equals(s3_obj, FALSE)
+#' }
+equals <- function(obj, ..., bool) {UseMethod("equals", obj)}
+
 #' S3 Generic - Alter Internal State of S3 Object Instances
 #'
 #' @param obj S3 Object
