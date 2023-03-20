@@ -14,6 +14,20 @@
 #' }
 validate <- function(obj, ..., bool) {UseMethod("validate", obj)}
 
+#' S3 Generic - Alter Internal State of S3 Object Instances
+#'
+#' @param obj S3 Object
+#' @param ... R ellipsis
+#'
+#' @return S3 Object
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' alter(s3_obj)
+#' }
+alter <- function(obj, ...) {UseMethod("alter", obj)}
+
 #' S3 Generic - CRUD 'Read' Operation
 #'
 #' @param obj S3 Object
