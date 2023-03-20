@@ -85,20 +85,65 @@ packageFunctions <- function() {
 packageS3Methods <- function() {
   
   # Get Names of S3 Methods in Package Namespace
-  s3_methods <- ls(getNamespace('dbproj')[[".__S3MethodsTable__."]])
+  s3_method_names <- ls(getNamespace('dbproj')[[".__S3MethodsTable__."]])
   
   # Get Package Function Details
   package_functions <- packageFunctions()
   
-  # Validate that `s3_methods` are all Function Names
-  if (!isTRUE(all(s3_methods %in% names(package_functions)))) {
-    stop("`s3_methods` must be subset of 'dbproj' function namespace in call to `dbproj::packageS3Methods`")
+  # Validate that `s3_method_names` are all Function Names
+  if (!isTRUE(all(s3_method_names %in% names(package_functions)))) {
+    stop("`s3_method_names` must be subset of 'dbproj' function namespace in call to `dbproj::packageS3Methods`")
   }
   
   # Get Details of all S3 Methods 
-  s3_methods <- package_functions[s3_methods]
+  s3_methods <- package_functions[s3_method_names]
   
   # Return Result
   return(s3_methods)
+  
+}
+
+#' List S3 Generics for Package 'dbproj'
+#' 
+#' @importFrom rlang .data
+#' 
+#' @return character
+#'
+#' @examples
+#' \dontrun{
+#' output <- packageS3Generics()
+#' }
+packageS3Generics <- function() {
+  
+  # Get Names of S3 Methods in Package Namespace
+  s3_method_names <- ls(getNamespace('dbproj')[[".__S3MethodsTable__."]])
+  
+  # Get Package Function Details
+  package_functions <- packageFunctions()
+  
+  # Validate that `s3_method_names` are all Function Names
+  if (!isTRUE(all(s3_method_names %in% names(package_functions)))) {
+    stop("`s3_method_names` must be subset of 'dbproj' function namespace in call to `dbproj::packageS3Generics`")
+  }
+  
+  # Get Details of all S3 Methods 
+  s3_methods <- package_functions[s3_method_names]
+  
+  # Calculate Expected S3 Generic Names 
+  s3_generic_names <- unique(purrr::map_chr(names(test), function(t){strsplit(t, '.', TRUE)[[1]][1]}))
+  
+  if (!isTRUE(length(intersect(s3_method_names, s3_generic_names)) == 0)) {
+    stop("`s3_method_names` must not overlap with `s3_generic_names` in call to `dbproj::packageS3Generics`")
+  }
+  
+  if (!isTRUE(all(s3_generic_names %in% names(package_functions)))) {
+    stop("`s3_generic_names` must be subset of 'dbproj' function namespace in call to `dbproj::packageS3Generics`")
+  }
+  
+  # Get Details of all S3 Generics 
+  s3_generics <- package_functions[s3_generic_names]
+  
+  # Return Result
+  return(s3_generics)
   
 }
