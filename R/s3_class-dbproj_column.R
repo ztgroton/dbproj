@@ -27,6 +27,9 @@ new_dbproj_column <- function(name, type) {
   # Set Class
   class(rs) <- c('dbproj_column', class(rs))
   
+  # Lock `rs$data`
+  rlang::env_lock(rs$data)
+  
   # Return S3 Object
   return(rs)
   
@@ -76,7 +79,7 @@ validate.dbproj_column <- function(obj, ..., bool = FALSE) {
   # * `name`
   obj_name <- obj$name
   is_char <- isTRUE(is.character(obj_name))
-  is_len1 <- isTRUE(length(obj_name) == 0)
+  is_len1 <- isTRUE(length(obj_name) == 1)
   is_not_blank <- !isTRUE(any(is.na(obj_name))) && !isTRUE(any(is.null(obj_name)))
   
   if (!isTRUE(all(is_char, is_len1, is_not_blank))) {
