@@ -5,9 +5,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' output <- dbprojPackageNameSpace()
+#' output <- packageNameSpace()
 #' }
-dbprojPackageNameSpace <- function() {
+packageNameSpace <- function() {
   
   # Get Names of Namespace Contents
   dbproj_names <- ls(getNamespace('dbproj'))
@@ -31,7 +31,7 @@ dbprojPackageNameSpace <- function() {
   
 } 
 
-#' List Function Names for Package 'dbproj'
+#' List Function Names and Parameters for Package 'dbproj'
 #' 
 #' @importFrom rlang .data
 #'
@@ -39,39 +39,64 @@ dbprojPackageNameSpace <- function() {
 #'
 #' @examples
 #' \dontrun{
-#' output <- dbprojFunctionNameSpace()
+#' output <- packageFunctions()
 #' }
-dbprojFunctionNameSpace <- function() {
+packageFunctions <- function() {
   
   # Get Names and Types of Package Namespace Contents
-  package_name_space <- dbprojPackageNameSpace()
+  package_name_space <- packageNameSpace()
   
   # Get Names of Functions as Character Vector
-  function_name_space <- package_name_space %>% 
+  function_names <- packageNameSpace() %>% 
     dplyr::filter(.data$type == 'function') %>% 
     dplyr::pull(.data$name)
   
-  return(function_name_space)
+  # Get Function Details
+  result <- purrr::map(function_names, function(fname) {
+    
+    f <- getNamespace('dbproj')[[fname]]
+    
+    if (!isTRUE(is.function(f))) {
+      stop("`f` must be function in call to `dbproj::packageFunctions`")
+    }
+    
+    return(names(formals(f)))
+    
+  })
+  names(result) <- function_names
+  
+  # Process Result
+  
+  # Return Result
+  return(result)
   
 }
 
-#' List S3 Method Names for Package 'dbproj'
-#'
+#' List S3 Methods for Package 'dbproj'
+#' 
+#' @importFrom rlang .data
+#' 
 #' @return character
 #'
 #' @examples
 #' \dontrun{
-#' output <- dbprojS3Methods()
+#' output <- packageS3Methods()
 #' }
-dbprojS3Methods <- function() {
+packageS3Methods <- function() {
   
   # Get Names of S3 Methods in Package Namespace
   s3_methods <- ls(getNamespace('dbproj')[[".__S3MethodsTable__."]])
   
+  # Get Package Function Details
+  package_functions <- packageFunctions()
+  
   # Validate that `s3_methods` are all Function Names
-  if (!isTRUE(all(s3_methods %in% dbprojFunctionNameSpace()))) {
-    stop("`s3_methods` must be subset of 'dbproj' function namespace in call to `dbproj::dbprojS3Methods`")
+  if (!isTRUE(all(s3_methods %in% names(package_functions)))) {
+    stop("`s3_methods` must be subset of 'dbproj' function namespace in call to `dbproj::packageS3Methods`")
   }
+  
+  # Get Details of all S3 Methods 
+  s3_methods <- package_functions[s3_methods]
   
   # Return Result
   return(s3_methods)
