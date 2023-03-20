@@ -1,4 +1,17 @@
 
+#' S3 Method - Test Equality of S3 'dbproj_column' Instances
+#'
+#' @param obj S3 Object
+#' @param ... R ellipsis
+#'
+#' @return S3 Object
+#'
+#' @examples
+#' \dontrun{
+#' test <- equals(s3_obj, FALSE)
+#' }
+equals.dbproj_column <- function(obj, ...) {}
+
 #' S3 Method - CRUD 'Read' Operation
 #'
 #' @param obj S3 Object
