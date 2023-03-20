@@ -27,6 +27,9 @@ new_dbproj_db <- function(name, schema) {
   # Set Class
   class(rs) <- c('dbproj_db', class(rs))
   
+  # Lock `rs$data`
+  rlang::env_lock(rs$data)
+  
   # Return S3 Object
   return(rs)
   
@@ -74,9 +77,9 @@ validate.dbproj_db <- function(obj, ..., bool = FALSE) {
   # ADD CUSTOM INPUT VALIDATIONS HERE (USE SAME TEMPLATE AS `obj` and `bool`)
   
   # * `name`
-  obj_name <- obj$name
+  obj_name <- obj$data$name
   is_char <- isTRUE(is.character(obj_name))
-  is_len1 <- isTRUE(length(obj_name) == 0)
+  is_len1 <- isTRUE(length(obj_name) == 1)
   is_not_blank <- !isTRUE(any(is.na(obj_name))) && !isTRUE(any(is.null(obj_name)))
   
   if (!isTRUE(all(is_char, is_len1, is_not_blank))) {
@@ -85,10 +88,10 @@ validate.dbproj_db <- function(obj, ..., bool = FALSE) {
   }
   
   # * `schema`
-  if (isTRUE(length(obj$schema) == 0) && isTRUE(is.list(obj$schema))) {
+  if (isTRUE(length(obj$data$schema) == 0) && isTRUE(is.list(obj$data$schema))) {
     is_valid <- TRUE
   } else {
-    is_valid <- purrr::map_lgl(obj$schema, function(t) {
+    is_valid <- purrr::map_lgl(obj$data$schema, function(t) {
       isTRUE(validate.dbproj_schema(t, TRUE))
     })
   }
