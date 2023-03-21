@@ -130,7 +130,7 @@ packageS3Generics <- function() {
   s3_methods <- package_functions[s3_method_names]
   
   # Calculate Expected S3 Generic Names 
-  s3_generic_names <- unique(purrr::map_chr(names(test), function(t){strsplit(t, '.', TRUE)[[1]][1]}))
+  s3_generic_names <- unique(purrr::map_chr(names(s3_methods), function(t){strsplit(t, '.', TRUE)[[1]][1]}))
   
   if (!isTRUE(length(intersect(s3_method_names, s3_generic_names)) == 0)) {
     stop("`s3_method_names` must not overlap with `s3_generic_names` in call to `dbproj::packageS3Generics`")
