@@ -19,6 +19,6 @@ S3 Validator for Class 'list'
 }
 \examples{
 \dontrun{
-test <- validate.list(s3_obj, bool = TRUE)
+test <- validate.list(s3_obj)
 }
 }

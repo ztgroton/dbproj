@@ -24,7 +24,7 @@ validate <- function(obj, ...) {UseMethod("validate", obj)}
 #' \dontrun{
 #' test <- equals(s3_obj, FALSE)
 #' }
-equals <- function(obj, ..., bool) {UseMethod("equals", obj)}
+equals <- function(obj, ...) {UseMethod("equals", obj)}
 
 #' S3 Generic - Alter Internal State of S3 Object Instances
 #'

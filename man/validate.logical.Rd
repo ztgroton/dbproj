@@ -19,6 +19,6 @@ S3 Validator for Class 'logical'
 }
 \examples{
 \dontrun{
-test <- validate.logical(s3_obj, bool = TRUE)
+test <- validate.logical(s3_obj)
 }
 }

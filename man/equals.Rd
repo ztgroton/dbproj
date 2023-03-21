@@ -4,7 +4,7 @@
 \alias{equals}
 \title{S3 Generic - Test Equality of S3 Object Instances}
 \usage{
-equals(obj, ..., bool)
+equals(obj, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
