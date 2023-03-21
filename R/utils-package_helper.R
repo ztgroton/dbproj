@@ -147,3 +147,82 @@ packageS3Generics <- function() {
   return(s3_generics)
   
 }
+
+#' Pre-Process and Validate R Ellipsis Dot Arguments
+#'
+#' @param ... R ellipsis
+#' @param allow_na logical - TRUE/FALSE
+#' @param allow_dup logical - TRUE/FALSE
+#'
+#' @return list
+#'
+#' @examples
+#' \dontrun{
+#' dot_args <- packageHandleDots(...)
+#' }
+packageHandleDots <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+  
+  # Validate Input Expectations
+  
+  # * `allow_na`
+  if (!isTRUE(identical(allow_na, TRUE)) && !isTRUE(identical(allow_na, FALSE))) {
+    stop("`allow_na` must equal TRUE/FALSE in call to `dbproj::packageHandleDots`")
+  }
+  
+  # * `allow_dup`
+  if (!isTRUE(identical(allow_dup, TRUE)) && !isTRUE(identical(allow_dup, FALSE))) {
+    stop("`allow_dup` must equal TRUE/FALSE in call to `dbproj::packageHandleDots`")
+  }
+  
+  # Get Ellipsis Arguments
+  args <- list(...)
+  
+  # Conditionally Return Empty List 
+  if (isTRUE(length(args) == 0)) {return(list())}
+  
+  # Conditionally Validate that Names are Populated
+  if (!isTRUE(allow_na)) {
+    
+    all_names_non_na <- isTRUE(all(purrr::map_lgl(names(args), function(t){
+      !isTRUE(is.na(t)) && !isTRUE(is.null(t)) && !isTRUE(t == "")
+    })))
+    
+    if (!isTRUE(all_names_non_na)) {
+      stop("`names(args)` must be non-na in call to `dbproj::packageHandleDots`")
+    }
+    
+  }
+  
+  # Conditionally Validate that Names are Unique
+  if (!isTRUE(allow_dup)) {
+    
+    all_names_unique <- isTRUE(identical(sort(names(args)), sort(unique(names(args)))))
+    
+    if (!isTRUE(all_names_unique)) {
+      stop("`names(args)` must be unique in call to `dbproj::packageHandleDots`")
+    }
+    
+  }
+  
+  # Return Ellipsis Arguments 
+  return(args)
+  
+}
+
+packageDoCall <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+  
+  
+  
+}
+
+packageDoCallS3Generic <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+  
+  
+  
+}
+
+packageDoCallS3Method <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+  
+  
+  
+}
