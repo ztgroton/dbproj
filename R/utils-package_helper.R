@@ -31,6 +31,31 @@ packageNameSpace <- function() {
   
 } 
 
+#' List Function Names for Package 'dbproj'
+#' 
+#' @importFrom rlang .data
+#'
+#' @return character
+#'
+#' @examples
+#' \dontrun{
+#' output <- packageFunctionNames()
+#' }
+packageFunctionNames <- function() {
+  
+  # Get Names and Types of Package Namespace Contents
+  package_name_space <- packageNameSpace()
+  
+  # Get Names of Functions as Character Vector
+  function_names <- packageNameSpace() %>% 
+    dplyr::filter(.data$type == 'function') %>% 
+    dplyr::pull(.data$name)
+  
+  # Return Function Names 
+  return(function_names)
+  
+}
+
 #' List Function Names and Parameters for Package 'dbproj'
 #' 
 #' @importFrom rlang .data
@@ -209,7 +234,7 @@ packageHandleDots <- function(..., allow_na = FALSE, allow_dup = FALSE) {
   
 }
 
-packageDoCall <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+packageDoCall <- function(name, ...) {
   
   
   
