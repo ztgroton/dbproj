@@ -234,20 +234,45 @@ packageHandleDots <- function(..., allow_na = FALSE, allow_dup = FALSE) {
   
 }
 
-packageDoCall <- function(name, ...) {
+#' Call Package Function with Parameters (and Validation)
+#'
+#' @param func_name character - Name of Package Function
+#' @param ... R ellipsis - Arguments passed onto Package Function
+#'
+#' @return R Object
+#'
+#' @examples
+#' \dontrun{
+#' output <- packageDoCall('func', x = 3)
+#' }
+packageDoCall <- function(func_name, ...) {
   
+  # Validate Inputs 
+  if (missing(func_name)) {stop("`func_name` is missing in call to `dbproj::packageDoCall`")}
   
+  # Validate Input Expectations 
   
-}
-
-packageDoCallS3Generic <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+  # * `func_name`
+  is_char <- isTRUE(is.character(func_name))
+  is_len1 <- isTRUE(length(func_name) == 1)
+  is_not_blank <- !isTRUE(any(is.na(func_name))) && !isTRUE(any(is.null(func_name)))
   
+  if (!isTRUE(all(is_char, is_len1, is_not_blank))) {
+    stop("`func_name` must be non-empty length 1 character string in call to `dbproj::packageDoCall`")
+  }
   
+  # Get List of all Package Function Names
+  function_names <- packageFunctionNames()
   
-}
-
-packageDoCallS3Method <- function(..., allow_na = FALSE, allow_dup = FALSE) {
+  # Validate `func_name` against `function_names`
+  if (!isTRUE(func_name %in% function_names)) {
+    stop("`func_name` must refer to valid package function in call to `dbproj::packageDoCall`")
+  } 
   
+  # Call `packageHandleDots()` / Initialize `dot_args`
+  dot_args <- packageHandleDots(...)
   
+  # Call `do.call` 
+  do.call(what = func_name, args = dot_args)
   
 }
