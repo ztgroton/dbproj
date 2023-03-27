@@ -11,6 +11,7 @@
   single = FALSE,
   check_names = FALSE,
   check_int = FALSE,
+  check_neg = FALSE,
   ...
 )
 }
@@ -26,6 +27,8 @@
 \item{check_names}{logical}
 
 \item{check_int}{logical}
+
+\item{check_neg}{logical}
 
 \item{...}{R ellipsis}
 }

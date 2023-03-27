@@ -221,6 +221,7 @@ validate.character <- function(obj,
 #' @param single logical 
 #' @param check_names logical 
 #' @param check_int logical
+#' @param check_neg logical
 #' @param ... R ellipsis 
 #'
 #' @return S3 Object
@@ -236,6 +237,7 @@ validate.numeric <- function(obj,
                              single = FALSE, 
                              check_names = FALSE, 
                              check_int = FALSE,
+                             check_neg = FALSE,
                              ...) {
   
   # Validate Inputs
@@ -319,7 +321,20 @@ validate.numeric <- function(obj,
   if (isTRUE(check_int)) {
     all_whole <- all(obj %% 1 == 0)
     if (!isTRUE(all_whole)) {
-      msg <- "`obj` must only contain 'whole' integers in call to `validate.numeric`"
+      msg <- "`obj` must only contain whole numbers in call to `validate.numeric`"
+      err <- c(msg, err)
+    }
+  }
+  
+  # * `check_neg`
+  if (!isTRUE(validate.logical(check_neg, single = TRUE))) {
+    stop("`check_neg` must be identical to TRUE/FALSE in call to `validate.numeric`")
+  }
+  
+  if (isTRUE(check_neg)) {
+    all_positive <- all(obj >= 0)
+    if (!isTRUE(all_positive)) {
+      msg <- "`obj` must only contain positive whole numbers in call to `validate.numeric`"
       err <- c(msg, err)
     }
   }
