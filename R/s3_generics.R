@@ -91,3 +91,16 @@ update <- function(obj, ...) {UseMethod("update", obj)}
 #' delete(obj, ...)
 #' }
 delete <- function(obj, ...) {UseMethod("delete", obj)}
+
+#' S3 Generic - Generate Dummy Test Data
+#'
+#' @param obj S3 Object
+#' @param ... R ellipsis
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' generate(obj, ...)
+#' }
+generate <- function(obj, ...) {UseMethod("generate", obj)}
