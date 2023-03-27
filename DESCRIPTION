@@ -13,6 +13,7 @@ Imports:
     dplyr,
     magrittr,
     purrr,
+    random,
     rlang
 Suggests: 
     knitr,
