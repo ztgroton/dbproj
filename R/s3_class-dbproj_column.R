@@ -77,19 +77,20 @@ validate.dbproj_column <- function(obj, ..., bool = FALSE) {
   # ADD CUSTOM INPUT VALIDATIONS HERE (USE SAME TEMPLATE AS `obj` and `bool`)
   
   # * `name`
-  obj_name <- obj$name
-  is_char <- isTRUE(is.character(obj_name))
-  is_len1 <- isTRUE(length(obj_name) == 1)
-  is_not_blank <- !isTRUE(any(is.na(obj_name))) && !isTRUE(any(is.null(obj_name)))
-  
-  if (!isTRUE(all(is_char, is_len1, is_not_blank))) {
-    msg <- "`name` must be non-empty length 1 character string"
+  if (!isTRUE(validate.character(obj = obj$name, single = TRUE))) {
+    msg <- "`obj$name` must be a length 1 character"
     err <- c(msg, err)
   }
   
   # * `type`
-  is_valid <- isTRUE(obj$type %in% c('integer', 'numeric', 'text', 'logical', 'list'))
-  if (!isTRUE(all(is_valid))) {
+  if (!isTRUE(validate.character(obj = obj$type, single = TRUE))) {
+    msg <- "`type` must be a length 1 character"
+    err <- c(msg, err)
+  }
+  
+  valid_types <- c('integer', 'numeric', 'character', 'logical', 'list', 'POSIXct', 'Date')
+  is_valid <- isTRUE(obj$type %in% valid_types)
+  if (!isTRUE(is_valid)) {
     msg <- "`type` must be valid value"
     err <- c(msg, err)
   }
@@ -100,6 +101,7 @@ validate.dbproj_column <- function(obj, ..., bool = FALSE) {
     if (isTRUE(length(err) == 0)) {
       return(obj)
     } else {
+      warning("ERROR - `validate.numeric`")
       return(err)
     }
     
@@ -108,6 +110,7 @@ validate.dbproj_column <- function(obj, ..., bool = FALSE) {
     if (isTRUE(length(err) == 0)) {
       return(TRUE)
     } else {
+      warning("ERROR - `validate.numeric`")
       return(FALSE)
     }
     
