@@ -1,0 +1,19 @@
+---
+title: "Designing Databases in R with S3 Object-Oriented Programming"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Designing Databases in R with S3 Object-Oriented Programming}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(dbproj)
+```
