@@ -4,10 +4,14 @@
 \alias{insert.dbproj_char_tuple}
 \title{S3 Method - CRUD 'Insert' Operation}
 \usage{
-\method{insert}{dbproj_char_tuple}(obj, ...)
+\method{insert}{dbproj_char_tuple}(obj, x, in_place = TRUE, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
+
+\item{x}{character}
+
+\item{in_place}{logical}
 
 \item{...}{R ellipsis}
 }
@@ -16,6 +20,7 @@ S3 Method - CRUD 'Insert' Operation
 }
 \examples{
 \dontrun{
-insert(obj, ...)
+insert(obj, x)
+output <- insert(obj, x, in_place = FALSE)
 }
 }

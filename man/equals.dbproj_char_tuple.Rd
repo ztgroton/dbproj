@@ -4,21 +4,23 @@
 \alias{equals.dbproj_char_tuple}
 \title{S3 Method - Test Equality of S3 'dbproj_char_tuple' Instances}
 \usage{
-\method{equals}{dbproj_char_tuple}(obj, ...)
+\method{equals}{dbproj_char_tuple}(obj, x, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
+\item{x}{S3 Object}
+
 \item{...}{R ellipsis}
 }
 \value{
-S3 Object
+logical
 }
 \description{
 S3 Method - Test Equality of S3 'dbproj_char_tuple' Instances
 }
 \examples{
 \dontrun{
-test <- equals(s3_obj, FALSE)
+test <- equals(s3_obj, s3_obj)
 }
 }

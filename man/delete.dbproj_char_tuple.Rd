@@ -4,10 +4,14 @@
 \alias{delete.dbproj_char_tuple}
 \title{S3 Method - CRUD 'Delete' Operation}
 \usage{
-\method{delete}{dbproj_char_tuple}(obj, ...)
+\method{delete}{dbproj_char_tuple}(obj, x, in_place = FALSE, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
+
+\item{x}{character}
+
+\item{in_place}{logical}
 
 \item{...}{R ellipsis}
 }
@@ -16,6 +20,7 @@ S3 Method - CRUD 'Delete' Operation
 }
 \examples{
 \dontrun{
-delete(obj, ...)
+delete(obj, x)
+output <- delete(obj, x, in_place = FALSE)
 }
 }

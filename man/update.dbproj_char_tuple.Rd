@@ -4,10 +4,14 @@
 \alias{update.dbproj_char_tuple}
 \title{S3 Method - CRUD 'Update' Operation}
 \usage{
-\method{update}{dbproj_char_tuple}(obj, ...)
+\method{update}{dbproj_char_tuple}(obj, x, in_place = FALSE, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
+
+\item{x}{character}
+
+\item{in_place}{logical}
 
 \item{...}{R ellipsis}
 }
@@ -16,6 +20,7 @@ S3 Method - CRUD 'Update' Operation
 }
 \examples{
 \dontrun{
-update(obj, ...)
+update(obj, x)
+output <- update(obj, x, in_place = FALSE)
 }
 }
