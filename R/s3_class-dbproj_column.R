@@ -77,19 +77,19 @@ validate.dbproj_column <- function(obj, ..., bool = FALSE) {
   # ADD CUSTOM INPUT VALIDATIONS HERE (USE SAME TEMPLATE AS `obj` and `bool`)
   
   # * `name`
-  if (!isTRUE(validate.character(obj = obj$name, single = TRUE))) {
-    msg <- "`obj$name` must be a length 1 character"
+  if (!isTRUE(validate.character(obj = obj$data$name, single = TRUE))) {
+    msg <- "`name` must be a length 1 character"
     err <- c(msg, err)
   }
   
   # * `type`
-  if (!isTRUE(validate.character(obj = obj$type, single = TRUE))) {
+  if (!isTRUE(validate.character(obj = obj$data$type, single = TRUE))) {
     msg <- "`type` must be a length 1 character"
     err <- c(msg, err)
   }
   
   valid_types <- c('integer', 'numeric', 'character', 'logical', 'list', 'POSIXct', 'Date')
-  is_valid <- isTRUE(obj$type %in% valid_types)
+  is_valid <- isTRUE(obj$data$type %in% valid_types)
   if (!isTRUE(is_valid)) {
     msg <- "`type` must be valid value"
     err <- c(msg, err)
@@ -120,20 +120,22 @@ validate.dbproj_column <- function(obj, ..., bool = FALSE) {
 
 #' S3 Helper Function for Class 'column'
 #'
-#' @param name data.frame
+#' @param name character
+#' @param type character
 #'
 #' @return S3 Object
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' test <- column(IMF_DATA)
+#' test <- column('testcol', 'character')
 #' }
-column <- function(name) {
+column <- function(name, type) {
   
   # Validate Inputs
   if (missing(name)) {stop("`name` is missing in call to `dbproj::column`")}
+  if (missing(type)) {stop("`type` is missing in call to `dbproj::column`")}
   
-  validate(new_dbproj_column(name))
+  validate(new_dbproj_column(name, type))
   
 } 

@@ -4,21 +4,23 @@
 \alias{equals.dbproj_column}
 \title{S3 Method - Test Equality of S3 'dbproj_column' Instances}
 \usage{
-\method{equals}{dbproj_column}(obj, ...)
+\method{equals}{dbproj_column}(obj, x, ...)
 }
 \arguments{
 \item{obj}{S3 Object}
 
+\item{x}{S3 Object}
+
 \item{...}{R ellipsis}
 }
 \value{
-S3 Object
+logical
 }
 \description{
 S3 Method - Test Equality of S3 'dbproj_column' Instances
 }
 \examples{
 \dontrun{
-test <- equals(s3_obj, FALSE)
+test <- equals(s3_obj, s3_obj)
 }
 }

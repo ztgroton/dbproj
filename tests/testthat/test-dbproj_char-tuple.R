@@ -6,7 +6,10 @@ test_that("`equals.dbproj_char_tuple` works", {
 })
 
 test_that("`contents.dbproj_char_tuple` works", {
-  expect_equal(contents.dbproj_char_tuple(char_tuple(c('a', 'b', 'c'))), c('a', 'b', 'c'))
+  expect_equal(
+    contents.dbproj_char_tuple(char_tuple(c('a', 'b', 'c'))), 
+    c('a', 'b', 'c')
+  )
 })
 
 test_that("`insert.dbproj_char_tuple` works", {

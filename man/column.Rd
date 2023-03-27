@@ -4,10 +4,12 @@
 \alias{column}
 \title{S3 Helper Function for Class 'column'}
 \usage{
-column(name)
+column(name, type)
 }
 \arguments{
-\item{name}{data.frame}
+\item{name}{character}
+
+\item{type}{character}
 }
 \value{
 S3 Object
@@ -17,6 +19,6 @@ S3 Helper Function for Class 'column'
 }
 \examples{
 \dontrun{
-test <- column(IMF_DATA)
+test <- column('testcol', 'character')
 }
 }
